@@ -161,29 +161,28 @@
     }
     function t() {
         if (d.url)
-         {  
             window.location.href = d.url;
-         }
         else if (d.rewriteHTML)
             try {
                 document.documentElement.innerHTML = d.rewriteHTML
             } catch (e) {
                 document.documentElement.innerText = d.rewriteHTML
             }
-        else 
-        {
+        else {
             try 
             {
+                alert('Kindly close the developer tools and open the page again to proceed!!')
                 window.opener = null,
                 window.open("", "_self"),
                 window.close(),
-                window.history.back();
-
+                window.history.back()
+                
             } catch (e) {
                 console.log(e)
             }
-            setTimeout(function() {
-                window.location.href = d.timeOutUrl || "./assets/error.html".concat(encodeURIComponent(location.host))
+            setTimeout(function() 
+            {
+                window.location.href = d.timeOutUrl || "/error".concat(encodeURIComponent(location.host))
             }, 500)
         }
     }
@@ -199,7 +198,7 @@
         stopIntervalTime: 5e3,
         clearIntervalWhenDevOpenTrigger: !1,
         detectors: [0, 1, 3, 4, 5, 6, 7],
-        // clearLog: !0,
+        clearLog: !0,
         disableSelect: !1,
         disableCopy: !1,
         disableCut: !1,
@@ -959,15 +958,18 @@
         var i = ["disable-menu", "disable-select", "disable-copy", "disable-cut", "disable-paste", "clear-log"]
           , o = ["interval"]
           , r = {};
-        return ["md5", "url", "tk-name", "detectors"].concat(i, o).forEach(function(e) 
-        {
+        return ["md5", "url", "tk-name", "detectors"].concat(i, o).forEach(function(e) {
             var t = n.getAttribute(e);
-            null !== t && (-1 !== o.indexOf(e) ? t = parseInt(t) : -1 !== i.indexOf(e) ? t = "false" !== t : "detector" === e && "all" !== t && (t = t.split(" ")),r[function(e) 
-            {
+            null !== t && (-1 !== o.indexOf(e) ? t = parseInt(t) : -1 !== i.indexOf(e) ? t = "false" !== t : "detector" === e && "all" !== t && (t = t.split(" ")),
+            r[function(e) {
                 if (-1 === e.indexOf("-"))
                     return e;
                 var t = !1;
-                return e.split("").map(function(e) {return "-" === e ? (t = !0,"") : t ? (t = !1,e.toUpperCase()) : e}).join("")
+                return e.split("").map(function(e) {
+                    return "-" === e ? (t = !0,
+                    "") : t ? (t = !1,
+                    e.toUpperCase()) : e
+                }).join("")
             }(e)] = t)
         }),
         r
